@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Interactive Cuboid Area Calculator</h1>
+    <p>Enter length</p>
+    <input type="text" id="length">
+    <p>Enter width</p>
+    <input type="text" id="width">
+    <p>Enter height</p>
+    <input type="text" id="height">
+    
+    <br><br>
+    <button onclick="doCalc()">Calculate area</button>
+    <p id="areaCalc"></p>
+    <script>
+        function calcCuboidArea(aLength, aWidth, aHeight) {
+            const area = (aLength * aWidth * aHeight).toFixed(2);
+            return area;
+        }
+        function doCalc(){
+            const newLength = document.getElementById("length").value;
+            const newWidth = document.getElementById("width").value;
+            const newHeight = document.getElementById("height").value;
+            const newArea = calcCuboidArea(newLength, newWidth, newHeight);
+            document.getElementById("areaCalc").innerHTML += "the area of the cuboid " + newLength + "x" + newWidth + "x" + newHeight + " is " + newArea + "<br>";  
+        }
+    </script>
+</body>
+</html>
