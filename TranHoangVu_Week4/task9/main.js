@@ -20,25 +20,25 @@ Vue.component('product', {
     },
     template: `
     <div class="product">
-    <div>
-      <img :src="image" />
-    </div>
+        <div class="product-image">
+            <img :src="image" />
+        </div>
 
-    <div class="product-info">
-      <h1>{{ product }}</h1>
-      <p v-if="inStock">In Stock</p>
-      <p v-else>Out of Stock</p>
-      
-      <p>Shipping: {{ shipping }}</p>
+        <div class="product-info">
+            <h1>{{ product }}</h1>
+            <p v-if="inStock">In Stock</p>
+            <p v-else>Out of Stock</p>
+            
+            <p>Shipping: {{ shipping }}</p>
 
-      <product-details :details="details"></product-details>
+            <product-details :details="details"></product-details>
 
-      <div class="color-box" v-for="(variant, index) in variants" :key="variant.variantId"
-        :style="{ backgroundColor: variant.variantColor }" @mouseover="updateProduct(index)"></div>
+            <div class="color-box" v-for="(variant, index) in variants" :key="variant.variantId"
+                :style="{ backgroundColor: variant.variantColor }" @mouseover="updateProduct(index)"></div>
 
-      <button v-on:click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock}">Add to cart</button>
-      <button v-on:click="deleteFromCart">Delete from cart</button>
-    </div>
+            <button v-on:click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock}">Add to cart</button>
+            <button v-on:click="deleteFromCart">Delete from cart</button>
+        </div>
 
   </div> 
     `,
@@ -71,9 +71,11 @@ Vue.component('product', {
         updateProduct(index) {
             this.selectedVariant = index
         },
+        // CHALLENGE
         deleteFromCart() {
             this.$emit('delete-from-cart', this.variants[this.selectedVariant].variantId)
         }
+        // END OF CHALLENGE
     },
     computed: {
         title() {
@@ -104,8 +106,10 @@ var app = new Vue({
     updateCart(id){
         this.cart.push(id)
     },
+    // CHALLENGE
     removeCart(id){
         this.cart = this.cart.filter(item => item !== id);
     }
   }
 })
+
